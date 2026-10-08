@@ -1,0 +1,42 @@
+﻿<Window x:Class="MapBuilder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MapBuilder"
+        mc:Ignorable="d"
+        Title="MapBuilder" Height="780" Width="1200" WindowStartupLocation="CenterScreen">
+    <DockPanel>
+        <Border DockPanel.Dock="Left" Width="320" Background="#0f172a" Padding="12">
+            <StackPanel>
+                <TextBlock Text="MapBuilder" FontSize="28" FontWeight="Bold" Foreground="White" Margin="0,0,0,12"/>
+
+                <Button Content="Відкрити конфіг / HTML карту" Height="38" Margin="0,0,0,8" Click="LoadConfig_Click"/>
+                <Button Content="Додати 360 фото" Height="38" Margin="0,0,0,8" Click="LoadPanoramaFiles_Click"/>
+                <Button Content="Побудувати карту" Height="38" Margin="0,0,0,8" Click="BuildMap_Click"/>
+                <Button Content="Додати точку" Height="38" Margin="0,0,0,8" Click="AddMarker_Click"/>
+                <Button Content="Експорт JSON" Height="38" Margin="0,0,0,8" Click="ExportProject_Click"/>
+                <Button Content="Опублікувати на GitHub" Height="38" Margin="0,0,0,14" Click="GitHubPublish_Click"/>
+
+                <TextBlock Text="Назва точки" Foreground="#cbd5e1" Margin="0,0,0,4"/>
+                <TextBox x:Name="MarkerNameText" Height="30" Margin="0,0,0,8" Text="Видова точка"/>
+
+                <TextBlock Text="Примітка" Foreground="#cbd5e1" Margin="0,0,0,4"/>
+                <TextBox x:Name="MarkerNoteText" Height="30" Margin="0,0,0,12" Text="Опис"/>
+
+                <TextBlock Text="Точки" Foreground="#cbd5e1" Margin="0,0,0,6"/>
+                <ListBox x:Name="MarkerList" Height="180" DisplayMemberPath="Name" SelectionChanged="MarkerList_SelectionChanged"/>
+                <Button Content="Видалити вибрану точку" Height="38" Margin="0,8,0,0" Click="DeleteSelectedMarker_Click"/>
+            </StackPanel>
+        </Border>
+
+        <Grid Background="#111827">
+            <Canvas x:Name="MapCanvas" Background="#2b3747" MouseLeftButtonDown="MapCanvas_MouseLeftButtonDown" SizeChanged="MapCanvas_SizeChanged"/>
+            <wv2:WebView2 x:Name="MapWebView" Visibility="Collapsed"/>
+            <Border VerticalAlignment="Bottom" Background="#0b1120" BorderBrush="#334155" BorderThickness="1" CornerRadius="8" Margin="12" Padding="10">
+                <TextBlock x:Name="StatusText" Foreground="#e2e8f0" Text="Карта ще не завантажена." TextWrapping="Wrap"/>
+            </Border>
+        </Grid>
+    </DockPanel>
+</Window>

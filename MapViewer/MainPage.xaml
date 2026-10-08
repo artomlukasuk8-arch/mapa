@@ -1,0 +1,13 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MapViewer.MainPage"
+             Title="MapViewer">
+    <VerticalStackLayout Padding="22" Spacing="16">
+        <Label Text="MapViewer" FontSize="28" FontAttributes="Bold" />
+        <Label Text="Поточна карта" FontSize="18" />
+        <Label x:Name="StatusLabel" Text="Оновлення: очікує завантаження" />
+        <Button Text="Оновити карту" Clicked="RefreshClicked" />
+        <Button Text="Показати 360" Clicked="PanoramaClicked" />
+        <Image x:Name="MapImage" HeightRequest="260" BackgroundColor="#1f2937" />
+    </VerticalStackLayout>
+</ContentPage>
